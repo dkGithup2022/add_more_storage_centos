@@ -8,7 +8,19 @@
 
 - 스토리지 용량확보의 실습과 커맨드에 대해 보실 분은 "3. 실습과 커맨드 " 부분부터 보시면 됩니다. 
 
+
+- 아래 이미지 상황을 해결하는 개념적 지식과 절차에 대해 다룹니다. 
+
 </br>
+
+
+<img width="555" alt="스토리지_100_df_h" src="https://github.com/dkGithup2022/add_more_storage_centos/assets/104286091/744740dd-4d66-4656-b820-e1310cf6e763">
+
+
+
+</br>
+
+---------
 
 ### 목차
 
@@ -43,12 +55,18 @@
 
 </br>
 
+
+---------
+
+
+</br>
+
 ### 스토리지 고갈이 골치아픈 이유.
 
  리눅스에서 운영하다보면 여러 문제가 있을 수 있지만 아래의 두가지 이유로 스토리지 고갈은 더 골치가 아픕니다.
  
 - 어플리케이션이 실행이 안됨
-  - db 관리를 안해서 storage 를 100%가 되어도, db 의 내용을 지울 수 없습니다. db 실행에 필요한 로깅 작업이 안되서 db 자체가 켜지지 않습니다.
+  - db 데이터 때문에 storage가 100%가 되어도, db 의 내용을 지울 수 없습니다. db 실행에 필요한 로깅 작업이 안되서 db 자체가 켜지지 않습니다.
   
 
 - 몇몇 리눅스 커맨드가 작동하지 않음.
@@ -57,7 +75,9 @@
   - 위와 같은 문제로 고통을 받으신 다면 아래의 "진짜 진짜 진짜 진짜 최후의 방법"을 참고해주세요.
 
 
-<image 1 : journal ctl - 켜지지 않는 db > 
+<img width="594" alt="커맨드_불발_vgextend" src="https://github.com/dkGithup2022/add_more_storage_centos/assets/104286091/0e6a69a1-2877-49a7-9e09-52657e3a294a">
+
+ㄴ> 리눅스 커맨드도 동작 안되는게 있다. db 는 db 자체가 안켜짐 .
 
 </br>
 
@@ -86,16 +106,38 @@
 
 - 링크 : https://unix.stackexchange.com/questions/180400/is-it-safe-to-empty-usr-share-doc
 
+- 저는 아래 이미지 처럼 지웠습니다. 
+
+1) 디렉토리  
+<img width="1122" alt="usr_share_doc_지우기_1" src="https://github.com/dkGithup2022/add_more_storage_centos/assets/104286091/9cc578b4-d5bc-40b6-958d-c5aaed159545">
+
+
+2) 지우기
+   <img width="658" alt="usr_share_doc_지우기_2" src="https://github.com/dkGithup2022/add_more_storage_centos/assets/104286091/d75eaa77-ca46-4176-a2fe-ff2ca100722a">
+
+
 </br>
 
 
-### 리눅스가 디스크를 인식하는 방법
+---------
+
+
+</br>
+
+
+### 리눅스가 디스크를 인식하는 과정
 
 </br>
 
 #### 오버 뷰
 
-<이미지 -> 작성 오버뷰 > 
+<img width="980" alt="스토리지_파일시스템_구조_도식화" src="https://github.com/dkGithup2022/add_more_storage_centos/assets/104286091/0d0f9235-56c0-4beb-83f1-185f6b51d0bf">
+
+/* image by dankim , 암때나 말없이 가져가시고 틀린거 있음 코맨트 주세요.  */
+
+
+</br>
+
 
 연결된 하드디스크가 filesystem 으로 인식되기 까진 위와 같은 구조를 거쳐야 합니다. 
 
@@ -111,6 +153,9 @@ file system 상에서 추가적인 디스크가 인식되게 하려면 아래의
 
 
 이러면 짜잔, 당신이 db 를 운영 중이건 로그를 모으고 있건 해당 파일시스템의 추가적인 용량이 확인 됨을 확인하실 수 있을 것입니다. 디테일한 진행상황은 아래 "실습" 페이지에 이미지와 함께 다룹니다 .
+
+
+</br>
 
 
 #### 단어 정리 
@@ -198,6 +243,11 @@ Disk identifier: 0x000b974b
 ```
 
 </br>
+
+----
+
+</br>
+
 
 ### 실습과 커맨드 
 
